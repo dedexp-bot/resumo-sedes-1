@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Simulado · Recursos Materiais, Patrimônio e Compras · SEDES 2026</title>
+<style>
+:root{
+  --bg:#0f1117;--surface:#181c27;--surface2:#1f2436;--line:#2e3450;
+  --txt:#eef0f8;--muted:#8b91b0;
+  --gold:#e8b84b;--green:#3ecf72;--red:#f0574f;--blue:#5aabf5;--purple:#a78bfa;--orange:#fb923c;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);font-size:16px;line-height:1.6;padding-bottom:90px}
+
+header{padding:24px 18px 16px;background:linear-gradient(150deg,#141929 0%,#0f1117 100%);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.eyebrow{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:800}
+h1{font-size:19px;font-weight:900;margin-top:4px}
+.sub{font-size:12px;color:var(--muted);margin-top:3px}
+.badge-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.badge{padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700}
+.b-gold{background:rgba(232,184,75,.15);border:1px solid rgba(232,184,75,.4);color:var(--gold)}
+.b-blue{background:rgba(90,171,245,.13);border:1px solid rgba(90,171,245,.35);color:var(--blue)}
+
+nav{display:flex;gap:8px;overflow-x:auto;padding:13px 14px 10px;position:sticky;top:108px;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:9px 16px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
+.tab.on{background:var(--gold);color:#1a1200;border-color:var(--gold)}
+
+main{padding:16px 15px}
+section{display:none;animation:fu .22s ease}
+section.on{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* BLOCO INTRO */
+.bloco-header{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+.bloco-title{font-size:15px;font-weight:900;margin-bottom:4px}
+.bloco-desc{font-size:13px;color:var(--muted)}
+
+/* QUESTÃO CARD */
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.qhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.qnum{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+.qtag{padding:3px 8px;border-radius:99px;font-size:10.5px;font-weight:700}
+.qt-mat{background:rgba(90,171,245,.13);color:var(--blue);border:1px solid rgba(90,171,245,.28)}
+.qt-pat{background:rgba(167,139,250,.13);color:var(--purple);border:1px solid rgba(167,139,250,.28)}
+.qt-lic{background:rgba(251,146,60,.12);color:var(--orange);border:1px solid rgba(251,146,60,.28)}
+
+.qtext{font-size:15px;color:var(--txt);margin-bottom:14px;line-height:1.7}
+.qtext strong{color:var(--gold)}
+
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:12px 13px;border-radius:11px;border:1px solid var(--line);background:var(--surface2);color:var(--txt);font-size:14px;cursor:pointer;transition:all .15s;text-align:left;width:100%;position:relative}
+.opt:active{transform:scale(.99)}
+.opt .lt{font-weight:900;color:var(--gold);flex-shrink:0;width:18px;font-size:13px}
+.opt.ok{background:rgba(62,207,114,.12);border-color:var(--green);color:var(--green)}
+.opt.no{background:rgba(240,87,79,.10);border-color:var(--red);color:#f5b4b0}
+.opt.ok .lt{color:var(--green)}
+.opt.no .lt{color:var(--red)}
+.opt:disabled{cursor:default;pointer-events:none}
+
+.qexp{display:none;margin-top:13px;padding:13px 14px;border-radius:11px;font-size:13.5px;background:var(--surface2);border:1px solid var(--line);color:#cdd0e0;line-height:1.65}
+.qexp.show{display:block;animation:fu .2s ease}
+.verdict{font-weight:900;margin-bottom:6px;font-size:14px}
+.verdict.r{color:var(--green)}
+.verdict.w{color:var(--red)}
+.exp-text{font-size:13px;color:#b0b8d4;line-height:1.6}
+.exp-text strong{color:var(--txt)}
+
+/* SCOREBAR */
+#score{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(15,17,23,.95);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center}
+.score-left{font-size:13.5px;font-weight:700}
+.score-left span{color:var(--gold)}
+.score-progress{display:flex;gap:6px;align-items:center}
+.prog-bar{width:100px;height:5px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;background:var(--gold);border-radius:99px;transition:width .3s ease}
+#reset{padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:12.5px;font-weight:700;cursor:pointer}
+
+/* RESULTADO */
+.resultado{display:none;background:var(--surface);border:1px solid var(--gold);border-radius:14px;padding:22px;text-align:center;margin-bottom:14px}
+.resultado.show{display:block;animation:fu .3s ease}
+.res-emoji{font-size:42px;margin-bottom:8px}
+.res-nota{font-size:36px;font-weight:900;color:var(--gold)}
+.res-sub{font-size:14px;color:var(--muted);margin-top:4px}
+.res-detail{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.res-stat{padding:8px 14px;border-radius:99px;font-size:13px;font-weight:700}
+.rs-c{background:rgba(62,207,114,.13);color:var(--green);border:1px solid rgba(62,207,114,.3)}
+.rs-e{background:rgba(240,87,79,.1);color:var(--red);border:1px solid rgba(240,87,79,.28)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">SEDES/DF 2026 · Quadrix · TDAS 202</div>
+  <h1>🧪 Simulado — Tópico 4</h1>
+  <div class="sub">Materiais · Patrimônio · Licitações · 15 questões estilo Quadrix</div>
+  <div class="badge-row">
+    <span class="badge b-gold">🎁 Amostra Grátis</span>
+    <span class="badge b-blue">Nível Médio-Alto</span>
+  </div>
+</header>
+
+<nav id="nav">
+  <button class="tab on" data-s="s0">🗂️ Materiais (5)</button>
+  <button class="tab" data-s="s1">🏛️ Patrimônio (5)</button>
+  <button class="tab" data-s="s2">⚖️ Licitações (5)</button>
+</nav>
+
+<main>
+
+<!-- ===== BLOCO: MATERIAIS ===== -->
+<section id="s0" class="on">
+  <div class="bloco-header">
+    <div class="bloco-title">🗂️ Administração de Materiais</div>
+    <div class="bloco-desc">Tópico 4.1 · Classificação, Curva ABC, Gestão de Estoques e Armazenagem</div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="qcard" data-q="1" data-answer="C">
+    <div class="qhead">
+      <span class="qnum">Questão 01</span>
+      <span class="qtag qt-mat">Materiais</span>
+    </div>
+    <div class="qtext">A Curva ABC é uma ferramenta de gestão de estoques baseada no Princípio de Pareto. Com relação à classificação ABC dos materiais, assinale a alternativa <strong>correta</strong>.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Itens de Classe A representam a maioria dos itens em quantidade e concentram o maior valor total do estoque.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Itens de Classe B possuem maior valor individual e exigem controle permanente e rigoroso por parte do setor de almoxarifado.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Itens de Classe A correspondem a uma pequena parcela do total de itens, mas representam a maior parcela do valor total do estoque.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Itens de Classe C são os mais críticos para a operação do órgão e devem receber controle mais rigoroso que os demais.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>A Curva ABC classifica os materiais com base na sua criticidade operacional, independentemente do valor ou da quantidade utilizada.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: C</div>
+      <div class="exp-text">A Curva ABC baseia-se no Princípio de Pareto (80/20): <strong>Classe A</strong> = ~20% dos itens que representam ~80% do valor do estoque — poucos itens, muito dinheiro — exigem controle rigoroso. <strong>Classe B</strong> = ~30% dos itens, ~15% do valor. <strong>Classe C</strong> = ~50% dos itens, apenas ~5% do valor. A classificação é por valor de consumo, não por criticidade operacional.</div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qcard" data-q="2" data-answer="B">
+    <div class="qhead">
+      <span class="qnum">Questão 02</span>
+      <span class="qtag qt-mat">Materiais</span>
+    </div>
+    <div class="qtext">No que se refere aos níveis de estoque na gestão de materiais, o <strong>Ponto de Pedido (PP)</strong> representa:</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>A quantidade máxima de itens que deve ser mantida em estoque para evitar desperdício e custos desnecessários de armazenagem.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>O nível de estoque em que um novo pedido de reposição deve ser emitido, considerando o tempo de ressuprimento e o estoque de segurança.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>A quantidade econômica de pedido que minimiza os custos totais de estocagem e de emissão de pedidos ao fornecedor.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>O intervalo de tempo entre o momento em que o pedido é realizado e o momento em que o material é recebido pelo órgão.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>A diferença entre o estoque máximo e o estoque mínimo de segurança mantido pelo almoxarifado do órgão.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: B</div>
+      <div class="exp-text">O <strong>Ponto de Pedido (PP)</strong> é o nível de estoque que, ao ser atingido, sinaliza que um novo pedido de compra deve ser feito. Ele considera o <strong>consumo médio</strong> durante o <strong>tempo de ressuprimento</strong> (lead time) mais o <strong>estoque de segurança</strong>. Fórmula: PP = CMd × TR + ES. Não confunda com Quantidade Econômica de Pedido (QEP), que otimiza o tamanho do pedido.</div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qcard" data-q="3" data-answer="D">
+    <div class="qhead">
+      <span class="qnum">Questão 03</span>
+      <span class="qtag qt-mat">Materiais</span>
+    </div>
+    <div class="qtext">Acerca dos métodos de avaliação e controle de estoques, julgue o item a seguir: o método <strong>PEPS (Primeiro a Entrar, Primeiro a Sair)</strong> determina que os materiais adquiridos mais recentemente sejam os primeiros a sair do estoque. Esse método é, por isso, indicado para produtos de longa durabilidade.</div>
+    <div class="qtext" style="font-size:14px;background:var(--surface2);border-radius:10px;padding:12px;border:1px solid var(--line);color:var(--muted);margin-top:-8px">Assinale a alternativa que apresenta a análise <strong>correta</strong> do item acima.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>O item está correto, pois o PEPS prioriza a saída dos itens mais recentes, reduzindo o risco de obsolescência dos materiais novos.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>O item está correto, pois o PEPS é o método mais adequado para produtos de longa durabilidade, como máquinas e equipamentos.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>O item está errado somente quanto à indicação para produtos de longa durabilidade, sendo correto quanto ao fluxo de saída dos materiais.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>O item está errado: o PEPS determina que os materiais que entraram primeiro saiam primeiro, sendo indicado justamente para produtos perecíveis.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>O item está errado apenas porque o PEPS é exclusivo do setor privado, não sendo aplicável à administração pública brasileira.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: D</div>
+      <div class="exp-text">O item contém dois erros. <strong>(1)</strong> O PEPS/FIFO determina que os materiais que <em>entraram primeiro</em> devem <em>sair primeiro</em> — o contrário do que diz o enunciado. <strong>(2)</strong> Exatamente por isso, é indicado para <strong>produtos perecíveis</strong> (que perdem validade), não para produtos de longa durabilidade. O uso do PEPS na administração pública é plenamente válido e aceito.</div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qcard" data-q="4" data-answer="C">
+    <div class="qhead">
+      <span class="qnum">Questão 04</span>
+      <span class="qtag qt-mat">Materiais</span>
+    </div>
+    <div class="qtext">Na classificação de materiais do setor público, são considerados <strong>materiais de consumo</strong> aqueles que, em uso normal:</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Têm valor de aquisição superior a R$ 1.500,00 e são incorporados ao patrimônio permanente do órgão após o registro.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Podem ser reutilizados por mais de um exercício financeiro sem perder sua identidade física ou funcional.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Perdem sua identidade física ou se extinguem dentro de um período de até dois anos de uso.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>São obrigatoriamente registrados no sistema patrimonial e recebem número de tombamento pelo setor responsável.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Possuem valor significativo e são adquiridos mediante processo licitatório diferenciado com registro patrimonial obrigatório.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: C</div>
+      <div class="exp-text"><strong>Material de consumo</strong> é aquele que, em uso normal, perde sua identidade física e/ou se extingue em até dois anos. Exemplos: papel, caneta, toner, alimentos, produtos de limpeza. <strong>Material permanente</strong> tem durabilidade superior a dois anos e mantém sua identidade após o uso. O critério não é o valor, mas sim a durabilidade e a perda de identidade. Materiais permanentes é que são tombados.</div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qcard" data-q="5" data-answer="B">
+    <div class="qhead">
+      <span class="qnum">Questão 05</span>
+      <span class="qtag qt-mat">Materiais</span>
+    </div>
+    <div class="qtext">O <strong>estoque de segurança</strong> (ou estoque mínimo) é um conceito fundamental na gestão de estoques públicos. Assinale a alternativa que descreve <strong>corretamente</strong> sua principal finalidade.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Reduzir os custos operacionais de armazenagem durante os períodos de baixa demanda por materiais no órgão público.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Garantir o atendimento contínuo da demanda do órgão em caso de atraso no fornecimento ou variação inesperada de consumo.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Estabelecer o limite máximo de materiais a serem comprados em um único processo licitatório durante o exercício.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Calcular com precisão o ponto de pedido, eliminando a necessidade de manter margens de segurança nos estoques.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Substituir completamente o estoque regular durante os períodos de alta demanda e aumento de consumo pelo órgão.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: B</div>
+      <div class="exp-text">O <strong>estoque de segurança (mínimo)</strong> é uma reserva estratégica mantida para proteger o órgão contra dois riscos principais: <strong>(1)</strong> atrasos na entrega por parte do fornecedor e <strong>(2)</strong> variações inesperadas no consumo. Ele evita a ruptura de estoque (falta de material). Não tem função de substituir o estoque regular, mas sim de ser a "última linha de defesa" antes da falta total.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOCO: PATRIMÔNIO ===== -->
+<section id="s1">
+  <div class="bloco-header">
+    <div class="bloco-title">🏛️ Gestão Patrimonial</div>
+    <div class="bloco-desc">Tópico 4.2 · Tombamento, Controle, Inventário e Baixa de Bens</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="qcard" data-q="6" data-answer="B">
+    <div class="qhead">
+      <span class="qnum">Questão 06</span>
+      <span class="qtag qt-pat">Patrimônio</span>
+    </div>
+    <div class="qtext">No contexto da gestão patrimonial da Administração Pública, o <strong>tombamento</strong> de um bem móvel permanente consiste em:</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>A retirada definitiva do bem do patrimônio público por meio de procedimento administrativo específico de desfazimento.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>O registro formal do bem no acervo patrimonial do órgão, com atribuição de número de identificação (plaqueta patrimonial).</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>A proteção legal do bem contra alienação, em razão de seu valor histórico, artístico ou cultural para a coletividade.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>A transferência do bem de um órgão para outro, com a consequente alteração do responsável patrimonial.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>A avaliação periódica do valor de mercado dos bens permanentes para fins de atualização do balanço patrimonial do órgão.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: B</div>
+      <div class="exp-text">Na gestão patrimonial pública, <strong>tombamento</strong> significa o registro do bem no sistema patrimonial do órgão, com atribuição de número sequencial e fixação de plaqueta identificadora. Não confunda com o tombamento do IPHAN (proteção de bens históricos e culturais) — conceito completamente diferente e recorrente em pegadinhas de prova!</div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="qcard" data-q="7" data-answer="C">
+    <div class="qhead">
+      <span class="qnum">Questão 07</span>
+      <span class="qtag qt-pat">Patrimônio</span>
+    </div>
+    <div class="qtext">Sobre os tipos de inventário patrimonial na Administração Pública, assinale a alternativa <strong>correta</strong>.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>O inventário anual tem como principal objetivo calcular a depreciação acumulada dos bens permanentes para fins de balanço.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>O inventário especial é realizado obrigatoriamente ao final de cada exercício financeiro por determinação legal expressa.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>O inventário anual tem como objetivo verificar a existência física e a situação de conservação dos bens sob responsabilidade do órgão.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>O inventário inicial é realizado exclusivamente quando da extinção do órgão, para registro dos bens a serem transferidos ou alienados.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>O inventário rotativo substitui completamente a obrigatoriedade do inventário anual nos órgãos que possuem sistema informatizado de controle patrimonial.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: C</div>
+      <div class="exp-text">O <strong>inventário anual</strong> é obrigatório e sua finalidade principal é verificar a <strong>existência física</strong> e a <strong>condição de conservação</strong> dos bens patrimoniais. O inventário <strong>especial</strong> é realizado em situações excepcionais (sinistro, mudança de gestor, calamidade). O inventário <strong>inicial</strong> é feito quando um novo gestor assume. O inventário <strong>rotativo</strong> é contínuo e por amostragem, mas não substitui o anual.</div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="qcard" data-q="8" data-answer="B">
+    <div class="qhead">
+      <span class="qnum">Questão 08</span>
+      <span class="qtag qt-pat">Patrimônio</span>
+    </div>
+    <div class="qtext">A baixa patrimonial é o procedimento pelo qual um bem sai definitivamente do acervo do órgão. Assinale a alternativa que apresenta <strong>apenas</strong> formas de desfazimento de bens patrimoniais.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Tombamento, inventário anual e alienação por leilão público.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Alienação, doação, permuta e inutilização.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Cessão de uso, comodato e tombamento patrimonial.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Incorporação, avaliação de mercado e baixa contábil.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Licitação, dispensa de licitação e inexigibilidade de licitação.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: B</div>
+      <div class="exp-text">As formas de <strong>desfazimento (baixa patrimonial)</strong> são: alienação (venda), doação, permuta, inutilização e abandono. <strong>Cessão de uso e comodato</strong> NÃO são baixa — o bem continua no patrimônio, apenas muda o usuário temporariamente. <strong>Tombamento</strong> é a entrada do bem, não saída. Licitação é procedimento para compras/contratações, não desfazimento per se.</div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="qcard" data-q="9" data-answer="C">
+    <div class="qhead">
+      <span class="qnum">Questão 09</span>
+      <span class="qtag qt-pat">Patrimônio</span>
+    </div>
+    <div class="qtext">No que se refere à <strong>cessão de uso</strong> de bens públicos entre órgãos da administração, assinale a alternativa correta.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>A cessão de uso implica transferência definitiva da propriedade do bem ao órgão cessionário, com baixa patrimonial imediata no cedente.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>É uma modalidade de desfazimento patrimonial equiparada à doação, resultando na saída definitiva do bem do patrimônio do cedente.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Permite a utilização temporária do bem por outro órgão, sem transferência de propriedade, permanecendo o bem no patrimônio do cedente.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Exige obrigatoriamente a realização de processo licitatório na modalidade Concorrência para ser efetivada entre órgãos públicos.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Só pode ocorrer entre órgãos do mesmo Poder, sendo vedada a cessão de uso entre Poderes distintos da mesma esfera de governo.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: C</div>
+      <div class="exp-text">A <strong>cessão de uso</strong> é a permissão para que outro órgão utilize o bem temporariamente, <strong>sem transferência de propriedade</strong>. O bem continua registrado no patrimônio do órgão cedente. Por isso, NÃO é uma baixa patrimonial. Pode ocorrer entre órgãos de diferentes Poderes. Não exige licitação por se tratar de atividade interna da Administração.</div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="qcard" data-q="10" data-answer="B">
+    <div class="qhead">
+      <span class="qnum">Questão 10</span>
+      <span class="qtag qt-pat">Patrimônio</span>
+    </div>
+    <div class="qtext">Quanto à responsabilidade patrimonial no âmbito da Administração Pública, assinale a alternativa <strong>correta</strong>.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>A responsabilidade pela guarda e conservação dos bens é atribuída exclusivamente ao setor de patrimônio do órgão, que responde por qualquer dano ou extravio.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>O agente público que recebe a carga de um bem patrimonial torna-se responsável por sua guarda, conservação e uso adequado, respondendo por perdas e danos.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Somente a autoridade máxima do órgão responde, solidariamente, por qualquer dano, perda ou extravio de bem permanente do acervo patrimonial.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>A responsabilidade por bens patrimoniados recai sobre o Tribunal de Contas, que exerce o controle externo e responde pela integridade do patrimônio público.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Não há responsabilização individual de servidores por perda ou dano a bens públicos, salvo em caso de dolo comprovado por decisão judicial transitada em julgado.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: B</div>
+      <div class="exp-text">O servidor que recebe a <strong>carga patrimonial</strong> de um bem torna-se o <strong>agente patrimonial responsável</strong>. Ele deve zelar pela guarda, conservação e utilização adequada. Em caso de perda, dano ou extravio por negligência, imprudência ou dolo, responde administrativamente e pode ser obrigado a ressarcir o erário. A responsabilidade é pessoal e intransferível ao setor de patrimônio.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOCO: LICITAÇÕES ===== -->
+<section id="s2">
+  <div class="bloco-header">
+    <div class="bloco-title">⚖️ Licitações — Lei 14.133/2021</div>
+    <div class="bloco-desc">Tópico 4.3 · Modalidades, Fases, Critérios, Dispensa e Inexigibilidade</div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="qcard" data-q="11" data-answer="B">
+    <div class="qhead">
+      <span class="qnum">Questão 11</span>
+      <span class="qtag qt-lic">Licitações</span>
+    </div>
+    <div class="qtext">A Lei nº 14.133/2021 (Nova Lei de Licitações) substituiu a Lei nº 8.666/93 e trouxe mudanças significativas nas modalidades licitatórias. Assinale a alternativa que elenca <strong>corretamente</strong> as modalidades previstas na lei vigente.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Convite, Tomada de Preços, Concorrência, Pregão e Leilão.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Pregão, Concorrência, Convite, Concurso e Diálogo Competitivo.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Pregão, Tomada de Preços, Concorrência, Leilão e Concurso.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Convite, Pregão, Concorrência, Licitação Direta e Concurso.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: B</div>
+      <div class="exp-text">A Lei 14.133/2021 prevê <strong>5 modalidades</strong>: Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo. As modalidades <strong>Convite e Tomada de Preços</strong> da Lei 8.666/93 foram extintas. O <strong>Diálogo Competitivo</strong> é novidade — modalidade para contratações inovadoras e complexas em que a Administração dialoga com o mercado antes de fixar as especificações.</div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="qcard" data-q="12" data-answer="A">
+    <div class="qhead">
+      <span class="qnum">Questão 12</span>
+      <span class="qtag qt-lic">Licitações</span>
+    </div>
+    <div class="qtext">Na Lei nº 14.133/2021, o <strong>Pregão</strong> é a modalidade licitatória utilizada para:</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Aquisição de bens e contratação de serviços comuns, independentemente do valor estimado da contratação.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Contratação de obras e serviços de engenharia de qualquer porte, incluindo os de grande vulto e alta complexidade técnica.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Seleção de projetos artísticos, científicos e trabalhos técnicos especializados com atribuição de prêmio ao vencedor.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Alienação de bens imóveis e móveis inservíveis da Administração, mediante oferta de lances públicos em sessão presencial.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Contratação de serviços técnicos profissionais especializados de natureza singular, quando há notória especialização do contratado.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: A</div>
+      <div class="exp-text">O <strong>Pregão</strong> é destinado à aquisição de <strong>bens e serviços comuns</strong> (padrão de mercado, sem características singulares), <strong>independentemente do valor</strong>. É realizado preferencialmente na forma eletrônica. As demais alternativas descrevem: B = Concorrência (obras complexas); C = Concurso (obras intelectuais); D = Leilão (venda de bens); E = Inexigibilidade de licitação (serviço singular com notória especialização).</div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="qcard" data-q="13" data-answer="A">
+    <div class="qhead">
+      <span class="qnum">Questão 13</span>
+      <span class="qtag qt-lic">Licitações</span>
+    </div>
+    <div class="qtext">A <strong>dispensa de licitação</strong> difere fundamentalmente da <strong>inexigibilidade de licitação</strong>. Sobre essa distinção, assinale a alternativa <strong>correta</strong>.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Na dispensa, a licitação seria juridicamente possível, mas a lei autoriza sua não realização em hipóteses específicas; na inexigibilidade, a competição é inviável por impossibilidade lógica.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Na inexigibilidade, a licitação é facultativa e fica a critério do gestor público realizá-la ou não; na dispensa, sua realização é sempre obrigatória.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>A dispensa de licitação ocorre exclusivamente para contratações de valor superior a R$ 50.000,00, enquanto a inexigibilidade se aplica a qualquer valor.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>A inexigibilidade é aplicada apenas para obras e serviços de engenharia de alto valor, ao passo que a dispensa abrange todas as demais contratações diretas.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Ambas têm o mesmo fundamento jurídico e diferem apenas quanto ao valor do contrato e à obrigatoriedade de publicação do aviso de contratação.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: A</div>
+      <div class="exp-text"><strong>Dispensa</strong>: a competição seria possível, mas o legislador, por razões de conveniência, autoriza a contratação direta — rol <em>taxativo</em> (art. 75 da Lei 14.133/2021). Ex: emergência, valor baixo (≤ R$50.000 obras / ≤ R$100.000 outros após retificação). <strong>Inexigibilidade</strong>: a competição é <em>inviável</em> (impossível) — rol <em>exemplificativo</em> (art. 74). Ex: fornecedor exclusivo, artista consagrado, serviço técnico singular.</div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="qcard" data-q="14" data-answer="B">
+    <div class="qhead">
+      <span class="qnum">Questão 14</span>
+      <span class="qtag qt-lic">Licitações</span>
+    </div>
+    <div class="qtext">Com relação às fases do processo licitatório na Lei nº 14.133/2021, assinale a sequência <strong>correta</strong> das fases externas da licitação.</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Habilitação → Divulgação do Edital → Apresentação de Propostas → Julgamento → Recursal → Homologação.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Divulgação do Edital → Apresentação de Propostas → Julgamento → Habilitação → Recursal → Homologação.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Divulgação do Edital → Habilitação → Apresentação de Propostas → Julgamento → Recursal → Homologação.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Apresentação de Propostas → Habilitação → Divulgação do Edital → Julgamento → Recursal → Homologação.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Divulgação do Edital → Apresentação de Propostas → Habilitação → Julgamento → Recursal → Homologação.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: B</div>
+      <div class="exp-text">A grande novidade da Lei 14.133/2021 é a <strong>inversão de fases</strong>: o <strong>julgamento vem ANTES da habilitação</strong>. Na lei antiga (8.666/93), habilitava-se primeiro e depois julgava as propostas. Agora, julgam-se as propostas primeiro e só se verifica a documentação de habilitação do vencedor. Isso agiliza o processo. Sequência correta: Divulgação → Propostas/Lances → <strong>Julgamento → Habilitação</strong> → Recursal → Homologação.</div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="qcard" data-q="15" data-answer="D">
+    <div class="qhead">
+      <span class="qnum">Questão 15</span>
+      <span class="qtag qt-lic">Licitações</span>
+    </div>
+    <div class="qtext">Uma secretaria pública precisa contratar empresa para organizar um evento de premiação de servidores que envolve produção artística, cenografia e apresentação musical personalizada. Considerando a Lei nº 14.133/2021, a modalidade licitatória mais adequada para essa contratação seria:</div>
+    <div class="opts">
+      <button class="opt" data-l="A"><span class="lt">A</span>Pregão, na forma eletrônica, pois é a modalidade mais ágil e aplica-se a qualquer tipo de serviço, independentemente do valor.</button>
+      <button class="opt" data-l="B"><span class="lt">B</span>Leilão, pois envolve seleção entre múltiplos fornecedores e é a modalidade adequada para serviços de entretenimento público.</button>
+      <button class="opt" data-l="C"><span class="lt">C</span>Concorrência, pois trata-se de serviço de grande complexidade e valor, exigindo avaliação de proposta técnica e de preço conjuntamente.</button>
+      <button class="opt" data-l="D"><span class="lt">D</span>Concurso, pois a lei prevê essa modalidade para a contratação de trabalhos técnicos, científicos ou artísticos mediante seleção.</button>
+      <button class="opt" data-l="E"><span class="lt">E</span>Diálogo Competitivo, pois a natureza artística e personalizada do evento é inovadora e não pode ser especificada previamente pela Administração.</button>
+    </div>
+    <div class="qexp">
+      <div class="verdict r">✅ Resposta: D</div>
+      <div class="exp-text">O <strong>Concurso</strong> é a modalidade prevista na Lei 14.133/2021 para a contratação de <strong>trabalhos técnicos, científicos ou artísticos</strong>, com atribuição de prêmio ou remuneração ao vencedor, avaliados por comissão especializada. O Pregão é para bens e serviços comuns (padronizados). O Diálogo Competitivo exige que a solução seja genuinamente inovadora e ainda não conhecida pelo mercado — não é o caso aqui.</div>
+    </div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div id="resultado" class="resultado">
+    <div id="res-emoji" class="res-emoji">🏆</div>
+    <div id="res-nota" class="res-nota">—</div>
+    <div class="res-sub">Aproveitamento no simulado completo</div>
+    <div class="res-detail">
+      <span id="res-c" class="res-stat rs-c">✅ — acertos</span>
+      <span id="res-e" class="res-stat rs-e">❌ — erros</span>
+    </div>
+  </div>
+
+</section>
+</main>
+
+<div id="score">
+  <div class="score-left">
+    <span id="acertos">0</span> / <span id="total">0</span> respondidas
+  </div>
+  <div class="score-progress">
+    <div class="prog-bar"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+  </div>
+  <button id="reset">Reiniciar</button>
+</div>
+
+<script>
+// Tab navigation
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById(t.dataset.s).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// Quiz logic
+let acertos = 0;
+let respostas = 0;
+const total = 15;
+
+document.querySelectorAll('.opt').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const qcard = btn.closest('.qcard');
+    if(qcard.dataset.answered) return;
+    qcard.dataset.answered = '1';
+
+    const correct = qcard.dataset.answer;
+    const chosen = btn.dataset.l;
+    const exp = qcard.querySelector('.qexp');
+
+    qcard.querySelectorAll('.opt').forEach(o=>{
+      o.disabled = true;
+      if(o.dataset.l === correct) o.classList.add('ok');
+      else if(o.dataset.l === chosen) o.classList.add('no');
+    });
+
+    exp.querySelector('.verdict').className = 'verdict ' + (chosen === correct ? 'r' : 'w');
+    exp.classList.add('show');
+
+    respostas++;
+    if(chosen === correct) acertos++;
+
+    document.getElementById('acertos').textContent = respostas;
+    document.getElementById('total').textContent = respostas;
+    document.getElementById('prog').style.width = (respostas/total*100)+'%';
+
+    if(respostas === total){
+      const pct = Math.round(acertos/total*100);
+      const emoji = pct>=80?'🏆':pct>=60?'📚':'💪';
+      document.getElementById('res-emoji').textContent = emoji;
+      document.getElementById('res-nota').textContent = pct+'%';
+      document.getElementById('res-c').textContent = '✅ '+acertos+' acertos';
+      document.getElementById('res-e').textContent = '❌ '+(total-acertos)+' erros';
+      const r = document.getElementById('resultado');
+      r.classList.add('show');
+
+      // Switch to last tab to show result
+      document.querySelectorAll('.tab')[2].click();
+      setTimeout(()=>r.scrollIntoView({behavior:'smooth',block:'start'}), 300);
+    }
+  });
+});
+
+document.getElementById('reset').addEventListener('click',()=>{
+  acertos = 0; respostas = 0;
+  document.querySelectorAll('.qcard').forEach(q=>{
+    delete q.dataset.answered;
+    q.querySelectorAll('.opt').forEach(o=>{
+      o.classList.remove('ok','no');
+      o.disabled = false;
+    });
+    q.querySelector('.qexp').classList.remove('show');
+  });
+  document.getElementById('acertos').textContent='0';
+  document.getElementById('total').textContent='0';
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('resultado').classList.remove('show');
+  document.querySelectorAll('.tab')[0].click();
+});
+</script>
+</body>
+</html>
