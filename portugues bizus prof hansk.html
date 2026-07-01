@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Português para Concursos — Bizus & Macetes · Prof Hansk</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0e15;--s1:#13161f;--s2:#191d2a;--s3:#1f2435;--bd:rgba(255,255,255,.07);
+  --txt:#eef0fa;--muted:#7a82a0;--dim:#4e566e;
+  --gold:#e8b84b;--green:#36d47b;--red:#f05252;--blue:#5aabf5;
+  --purple:#a78bfa;--teal:#2dd4bf;--orange:#fb923c;--pink:#f472b6;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);font-size:15px;line-height:1.65;padding-bottom:80px;-webkit-font-smoothing:antialiased}
+
+/* ─── MARCA D'ÁGUA ─── */
+#marca{position:fixed;bottom:18px;right:16px;z-index:999;background:rgba(12,14,21,.88);backdrop-filter:blur(12px);border:1px solid rgba(232,184,75,.3);border-radius:99px;padding:7px 14px;display:flex;align-items:center;gap:7px;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.marca-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.marca-txt{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:.06em;white-space:nowrap}
+
+/* ─── HEADER ─── */
+header{background:linear-gradient(150deg,#0f1221 0%,#0c0e15 60%,#130e1e 100%);border-bottom:1px solid var(--bd);padding:28px 18px 22px;position:sticky;top:0;z-index:50;overflow:hidden}
+header::before{content:'';position:absolute;top:-100px;right:-60px;width:320px;height:320px;background:radial-gradient(circle,rgba(232,184,75,.09) 0%,transparent 68%);border-radius:50%;pointer-events:none}
+header::after{content:'';position:absolute;bottom:-80px;left:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(167,139,250,.07) 0%,transparent 68%);border-radius:50%;pointer-events:none}
+.h-inner{position:relative;z-index:1}
+.h-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(232,184,75,.1);color:var(--gold);border:1px solid rgba(232,184,75,.25);border-radius:99px;padding:5px 13px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+h1{font-family:'Syne',sans-serif;font-size:22px;font-weight:900;line-height:1.15;letter-spacing:-.4px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h-sub{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.55}
+.h-stats{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap}
+.hstat{display:flex;flex-direction:column}
+.hstat-n{font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:var(--gold);line-height:1}
+.hstat-l{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+
+/* ─── NAV ─── */
+nav{background:var(--s1);border-bottom:1px solid var(--bd);position:sticky;top:130px;z-index:49;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.nav-row{display:flex;padding:0 12px;min-width:max-content}
+.ntab{padding:13px 14px;font-size:12.5px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .18s;white-space:nowrap;display:flex;align-items:center;gap:5px;letter-spacing:.01em}
+.ntab:hover{color:var(--txt)}
+.ntab.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ─── PÁGINAS ─── */
+main{padding:16px 15px}
+.page{display:none;animation:fadeUp .22s ease}
+.page.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ─── SECTION TITLE ─── */
+.stitle{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.stitle::before{content:'';display:block;width:20px;height:2px;background:linear-gradient(90deg,var(--gold),var(--orange));border-radius:2px}
+.stitle:first-child{margin-top:0}
+
+/* ─── CARDS BASE ─── */
+.card{border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid var(--bd)}
+.card-bg{background:var(--s1)}
+.card-title{font-size:15px;font-weight:700;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px;line-height:1.35}
+.card-body{font-size:14px;color:#bcc2d8;line-height:1.7}
+.card-body strong{color:var(--txt);font-weight:700}
+.card-body ul{padding-left:18px;margin:8px 0}
+.card-body li{margin-bottom:6px;line-height:1.6}
+.card-body p{margin-bottom:8px}
+.card-body p:last-child{margin-bottom:0}
+
+/* ─── TIPO DE CARD ─── */
+/* Bizu */
+.bizu{background:rgba(232,184,75,.07);border-color:rgba(232,184,75,.28);position:relative}
+.bizu .card-title{color:var(--gold)}
+.bizu-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(232,184,75,.15);color:var(--gold);border-radius:99px;padding:2px 8px;margin-bottom:8px}
+/* Mnemônico */
+.mnemo{background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.28)}
+.mnemo .card-title{color:var(--purple)}
+.mnemo-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(167,139,250,.15);color:var(--purple);border-radius:99px;padding:2px 8px;margin-bottom:8px}
+/* Cuidado */
+.cuidado{background:rgba(240,82,82,.07);border-color:rgba(240,82,82,.28)}
+.cuidado .card-title{color:var(--red)}
+.cuidado-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(240,82,82,.14);color:var(--red);border-radius:99px;padding:2px 8px;margin-bottom:8px}
+/* Regra */
+.regra{background:rgba(54,212,123,.06);border-color:rgba(54,212,123,.25)}
+.regra .card-title{color:var(--green)}
+.regra-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(54,212,123,.13);color:var(--green);border-radius:99px;padding:2px 8px;margin-bottom:8px}
+/* Dica Banca */
+.banca{background:rgba(90,171,245,.07);border-color:rgba(90,171,245,.26)}
+.banca .card-title{color:var(--blue)}
+.banca-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(90,171,245,.13);color:var(--blue);border-radius:99px;padding:2px 8px;margin-bottom:8px}
+
+/* ─── COMPARATIVO ─── */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0}
+.cbox{border-radius:11px;border:1px solid var(--bd);padding:12px;background:var(--s2)}
+.cbox-title{font-size:12px;font-weight:800;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+.cbox ul{padding-left:14px}
+.cbox li{font-size:12.5px;color:#9ba3c0;margin-bottom:5px;line-height:1.5}
+.cbox li strong{color:var(--txt)}
+
+/* ─── PILL CHIPS ─── */
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.chip{padding:5px 11px;border-radius:99px;font-size:12px;font-weight:700;border:1px solid}
+.ch-gold{background:rgba(232,184,75,.1);color:var(--gold);border-color:rgba(232,184,75,.3)}
+.ch-green{background:rgba(54,212,123,.1);color:var(--green);border-color:rgba(54,212,123,.28)}
+.ch-red{background:rgba(240,82,82,.1);color:var(--red);border-color:rgba(240,82,82,.28)}
+.ch-blue{background:rgba(90,171,245,.1);color:var(--blue);border-color:rgba(90,171,245,.28)}
+.ch-purple{background:rgba(167,139,250,.1);color:var(--purple);border-color:rgba(167,139,250,.28)}
+.ch-orange{background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.28)}
+
+/* ─── TABELA ─── */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px;border-radius:10px;overflow:hidden}
+thead tr{background:var(--s3)}
+th{text-align:left;padding:9px 10px;color:var(--gold);font-weight:800;font-size:11px;letter-spacing:.08em;border-bottom:1px solid var(--bd)}
+td{padding:9px 10px;border-bottom:1px solid var(--bd);color:#b0b8d4;vertical-align:top;line-height:1.55}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+td strong{color:var(--txt)}
+
+/* ─── HIGHLIGHT BOX ─── */
+.hbox{background:var(--s2);border-radius:11px;padding:13px 14px;margin:10px 0;font-size:13.5px;color:#cdd0e0;border-left:3px solid var(--gold)}
+.hbox-b{border-left-color:var(--blue)}
+.hbox-g{border-left-color:var(--green)}
+.hbox-r{border-left-color:var(--red)}
+.hbox-p{border-left-color:var(--purple)}
+
+/* ─── MEGA BIZU ROW ─── */
+.mega-grid{display:grid;gap:10px}
+.mega-item{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s}
+.mega-item:hover{border-color:rgba(232,184,75,.3)}
+.mega-icon{font-size:22px;flex-shrink:0;line-height:1;margin-top:2px}
+.mega-body{}
+.mega-title{font-weight:800;font-size:14px;margin-bottom:4px}
+.mega-desc{font-size:13px;color:#8b91b0;line-height:1.6}
+.mega-desc strong{color:var(--txt)}
+
+/* ─── CTA ─── */
+.cta-bar{background:linear-gradient(135deg,rgba(232,184,75,.12),rgba(251,146,60,.08));border:1px solid rgba(232,184,75,.3);border-radius:14px;padding:18px;text-align:center;margin:16px 0 0}
+.cta-emoji{font-size:28px;margin-bottom:8px}
+.cta-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:900;margin-bottom:6px}
+.cta-sub{font-size:13px;color:var(--muted)}
+.cta-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#1a1200;font-weight:800;font-size:12px;padding:7px 18px;border-radius:99px;letter-spacing:.04em}
+
+/* ─── SCORE BAR (empty placeholder for tab feel) ─── */
+</style>
+</head>
+<body>
+
+<!-- MARCA D'ÁGUA FIXA -->
+<div id="marca">
+  <div class="marca-dot"></div>
+  <span class="marca-txt">Prof Hansk · Concursos Públicos</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="h-inner">
+    <div class="h-badge">🎁 Amostra Gratuita</div>
+    <h1>Português para<br><em>Concursos Públicos</em></h1>
+    <p class="h-sub">Bizus, macetes e mnemônicos dos assuntos mais cobrados pelas principais bancas</p>
+    <div class="h-stats">
+      <div class="hstat"><span class="hstat-n">8</span><span class="hstat-l">Tópicos</span></div>
+      <div class="hstat"><span class="hstat-n">50+</span><span class="hstat-l">Bizus</span></div>
+      <div class="hstat"><span class="hstat-n">CESPE</span><span class="hstat-l">Quadrix · FCC</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- NAVEGAÇÃO -->
+<nav>
+  <div class="nav-row">
+    <button class="ntab on" data-p="p0">📖 Interpretação</button>
+    <button class="ntab" data-p="p1">🔡 Ortografia</button>
+    <button class="ntab" data-p="p2">🎯 Crase</button>
+    <button class="ntab" data-p="p3">🤝 Concordância</button>
+    <button class="ntab" data-p="p4">🔗 Regência</button>
+    <button class="ntab" data-p="p5">📍 Pronomes</button>
+    <button class="ntab" data-p="p6">🔤 Conjunções</button>
+    <button class="ntab" data-p="p7">⚡ Mega-Bizus</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════
+     P0: INTERPRETAÇÃO DE TEXTO
+══════════════════════════════════ -->
+<div id="p0" class="page on">
+
+  <div class="stitle">Estratégia de Leitura</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🥇 Bizu #1</div>
+    <div class="card-title">Leia o enunciado ANTES do texto</div>
+    <div class="card-body">Saber o que a banca pergunta antes de ler o texto te ajuda a <strong>focar no que importa</strong>. Você vai ao texto já sabendo onde buscar a resposta, economizando tempo e reduzindo erros.</div>
+  </div>
+
+  <div class="card cuidado">
+    <div class="cuidado-tag">⚠️ Palavras Armadilha</div>
+    <div class="card-title">Palavras absolutas = quase sempre erradas</div>
+    <div class="card-body">
+      <div class="chips">
+        <span class="chip ch-red">sempre</span>
+        <span class="chip ch-red">nunca</span>
+        <span class="chip ch-red">todos</span>
+        <span class="chip ch-red">apenas</span>
+        <span class="chip ch-red">somente</span>
+        <span class="chip ch-red">jamais</span>
+        <span class="chip ch-red">nenhum</span>
+        <span class="chip ch-red">impossível</span>
+      </div>
+      <p>Quando a alternativa usa essas palavras absolutas e o texto não diz isso com tanta certeza, a alternativa está <strong>errada</strong>. Bancas usam isso para criar distratores tentadores.</p>
+    </div>
+  </div>
+
+  <div class="stitle">Distinções Essenciais</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🧠 Bizu</div>
+    <div class="card-title">Inferir ≠ Deduzir ≠ "O texto afirma"</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Termo no enunciado</th><th>O que a banca quer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>"O texto afirma/diz que..."</strong></td><td>Está <em>explícito</em> no texto — procure as palavras exatas</td></tr>
+          <tr><td><strong>"Infere-se / depreende-se"</strong></td><td>Está <em>implícito</em> — conclusão lógica do texto</td></tr>
+          <tr><td><strong>"O autor defende/critica"</strong></td><td>Posição, tom e intenção do autor</td></tr>
+          <tr><td><strong>"A ideia central / tema"</strong></td><td>Sobre o que o texto fala no geral</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card banca">
+    <div class="banca-tag">🎯 Dica de Banca</div>
+    <div class="card-title">Como cada banca cobra interpretação</div>
+    <div class="card-body">
+      <ul>
+        <li><strong>CESPE/Cebraspe:</strong> afirmações certo/errado; foco em inferências e nuances do texto</li>
+        <li><strong>Quadrix:</strong> múltipla escolha; cobra sinônimos no contexto e a ideia do parágrafo</li>
+        <li><strong>FCC/VUNESP:</strong> questões sobre estrutura textual, tipos de argumento e coesão</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🎯 Macete</div>
+    <div class="card-title">Método "Voltar ao Texto"</div>
+    <div class="card-body">
+      <p>Toda vez que uma alternativa parecer certa, <strong>volte ao texto e encontre a linha</strong> que prova isso. Se não encontrar, desconfie. Interpretação de texto não aceita "achismos" — a resposta está sempre no texto.</p>
+      <div class="hbox">📌 <strong>Regra de ouro:</strong> o texto manda. Sua opinião pessoal sobre o tema não vale nada na questão.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     P1: ORTOGRAFIA
+══════════════════════════════════ -->
+<div id="p1" class="page">
+
+  <div class="stitle">Por que / Porque / Por quê / Porquê</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🧠 Bizu — O mais cobrado!</div>
+    <div class="card-title">Os quatro "porques" — nunca mais errar</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Forma</th><th>Uso</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Por que</strong></td><td>Pergunta / antes de "motivo"</td><td><em>Por que você foi?</em></td></tr>
+          <tr><td><strong>Porque</strong></td><td>Resposta / explicação (=pois)</td><td><em>Fui porque queria.</em></td></tr>
+          <tr><td><strong>Por quê</strong></td><td>Final de frase interrogativa</td><td><em>Você foi por quê?</em></td></tr>
+          <tr><td><strong>Porquê</strong></td><td>Substantivo (=motivo, razão)</td><td><em>Explique o porquê.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🎯 Mnemônico</div>
+    <div class="card-title">Mal × Mau / Mas × Más</div>
+    <div class="card-body">
+      <div class="compare">
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--green)">MAL</div>
+          <ul>
+            <li>Advérbio (oposto de <strong>bem</strong>)</li>
+            <li><em>"Ele cantou mal."</em></li>
+            <li>Substitua por "bem" — se fizer sentido, use MAL</li>
+          </ul>
+        </div>
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--red)">MAU</div>
+          <ul>
+            <li>Adjetivo (oposto de <strong>bom</strong>)</li>
+            <li><em>"Ele é um mau aluno."</em></li>
+            <li>Substitua por "bom" — se fizer sentido, use MAU</li>
+          </ul>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--blue)">MAS</div>
+          <ul>
+            <li>Conjunção adversativa</li>
+            <li><em>"Estudei, mas não passei."</em></li>
+          </ul>
+        </div>
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--purple)">MÁS</div>
+          <ul>
+            <li>Plural de "má" (adjetivo)</li>
+            <li><em>"São más notícias."</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stitle">Confusões Clássicas de Ortografia</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🥇 Mais Cobrados</div>
+    <div class="card-title">Senão × Se não · Afim × A fim</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Forma</th><th>Uso</th><th>Macete</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Senão</strong></td><td>Caso contrário / adversativo</td><td>Substitua por <em>"caso contrário"</em></td></tr>
+          <tr><td><strong>Se não</strong></td><td>Condicional (= caso não)</td><td>Substitua por <em>"caso não"</em></td></tr>
+          <tr><td><strong>Afim</strong></td><td>Semelhante, com afinidade</td><td><em>"Almas afins"</em> — adjetivo</td></tr>
+          <tr><td><strong>A fim de</strong></td><td>Com a finalidade de</td><td>Substitua por <em>"para"</em></td></tr>
+        </tbody>
+      </table>
+      <div class="hbox">🧪 Teste rápido: <em>"Estude, <strong>senão</strong>/<strong>se não</strong> vai reprovar."</em> → Cabe "caso contrário"? Então <strong>SENÃO</strong>. Cabe "caso não"? Então <strong>SE NÃO</strong>.</div>
+    </div>
+  </div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🎯 Mnemônico — X ou CH</div>
+    <div class="card-title">Quando usar X (e não CH)</div>
+    <div class="card-body">
+      <ul>
+        <li>Depois de <strong>ditongo</strong>: pei<strong>x</strong>e, ca<strong>x</strong>eiro, bai<strong>x</strong>o</li>
+        <li>Depois de <strong>en-</strong>: en<strong>x</strong>ada, en<strong>x</strong>oval, en<strong>x</strong>urrada</li>
+        <li>Depois de <strong>me-/de-</strong>: me<strong>x</strong>er, de<strong>x</strong>... (cuidado: exceções existem)</li>
+        <li>Palavras de origem <strong>indígena ou africana</strong>: abacaxi, xique-xique</li>
+      </ul>
+      <div class="hbox hbox-b">💡 <strong>CH</strong> vem de palavras de origem <strong>francesa/latina</strong>: chave, cheque, chocolate, chatear.</div>
+    </div>
+  </div>
+
+  <div class="card cuidado">
+    <div class="cuidado-tag">⚠️ Palavras-Bomba</div>
+    <div class="card-title">Escritas que a maioria erra</div>
+    <div class="card-body">
+      <div class="chips">
+        <span class="chip ch-gold">privilégio (não privilégio)</span>
+        <span class="chip ch-gold">beneficente (não beneficiente)</span>
+        <span class="chip ch-gold">previlégio ❌</span>
+        <span class="chip ch-gold">imprescindível ✅</span>
+        <span class="chip ch-gold">paralisia (não paralisya)</span>
+        <span class="chip ch-gold">espontâneo ✅</span>
+        <span class="chip ch-gold">auxílio (não auxilio)</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     P2: CRASE
+══════════════════════════════════ -->
+<div id="p2" class="page">
+
+  <div class="stitle">O Macete Definitivo da Crase</div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🏆 Macete Principal</div>
+    <div class="card-title">Substitua por "AO" — se funcionar, use À</div>
+    <div class="card-body">
+      <div class="hbox hbox-p">🔁 Troque a palavra feminina pela equivalente masculina. Se pedir <strong>"ao"</strong>, use <strong>"à"</strong>. Se pedir <strong>"a"</strong>, sem crase.<br><br>Ex: <em>"Fui à escola"</em> → masculino: <em>"Fui ao colégio"</em> ✅ → crase correta!</div>
+    </div>
+  </div>
+
+  <div class="stitle">Quando NUNCA há crase</div>
+
+  <div class="card cuidado">
+    <div class="cuidado-tag">🚫 Proibido — Nunca use crase</div>
+    <div class="card-title">7 situações em que crase não existe</div>
+    <div class="card-body">
+      <ul>
+        <li>Antes de <strong>verbos</strong>: <em>"Ele voltou a estudar"</em> ❌ à estudar</li>
+        <li>Antes de <strong>palavras masculinas</strong>: <em>"Fui a pé"</em>, <em>"a pedido"</em></li>
+        <li>Antes de <strong>pronomes pessoais</strong>: <em>"Disse a ela"</em>, <em>"a mim"</em></li>
+        <li>Antes de <strong>pronomes de tratamento</strong>: <em>"a Vossa Excelência"</em></li>
+        <li>Antes de <strong>"uma"</strong>: <em>"Fui a uma festa"</em></li>
+        <li>Antes de <strong>nomes de cidades sem artigo</strong>: <em>"Fui a Brasília"</em>, <em>"Fui a São Paulo"</em></li>
+        <li>Após preposição: <em>"Saí de a escola"</em> → errado de qualquer jeito</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle">Quando é facultativa</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🧠 Bizu</div>
+    <div class="card-title">Crase facultativa — ambos estão certos</div>
+    <div class="card-body">
+      <ul>
+        <li>Antes de <strong>pronomes possessivos femininos</strong>: <em>"Refiro-me à/a sua mãe"</em></li>
+        <li>Antes de <strong>nomes próprios femininos</strong>: <em>"Escrevi à/a Maria"</em></li>
+      </ul>
+      <div class="hbox hbox-g">✅ Dica de ouro: se a banca perguntar se há crase obrigatória nesses casos — a resposta é <strong>NÃO</strong>. É facultativa.</div>
+    </div>
+  </div>
+
+  <div class="card banca">
+    <div class="banca-tag">🎯 Banca Quadrix</div>
+    <div class="card-title">A Quadrix adora cobrar "casa", "terra" e "bordo"</div>
+    <div class="card-body">
+      <ul>
+        <li><em>"Voltei a casa"</em> — sem crase (casa = sem artigo, sentido geral)</li>
+        <li><em>"Voltei à casa dos meus pais"</em> — com crase (há artigo "a" antes de "casa")</li>
+        <li><em>"Voltamos a terra"</em> — sem crase (=ao local de origem)</li>
+        <li><em>"Em terra, a bordo"</em> — sem crase (expressões fixas)</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     P3: CONCORDÂNCIA
+══════════════════════════════════ -->
+<div id="p3" class="page">
+
+  <div class="stitle">Concordância Verbal — Regras de Ouro</div>
+
+  <div class="card regra">
+    <div class="regra-tag">📌 Regra 1</div>
+    <div class="card-title">Sujeito composto: antes ou depois do verbo?</div>
+    <div class="card-body">
+      <div class="compare">
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--green)">Antes do verbo</div>
+          <ul><li>Verbo sempre no <strong>plural</strong></li><li><em>"João e Maria viajaram."</em></li></ul>
+        </div>
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--blue)">Depois do verbo</div>
+          <ul><li>Verbo pode concordar com o <strong>mais próximo</strong></li><li><em>"Viajou João e Maria."</em> ✅</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🔥 Mais Cobrado</div>
+    <div class="card-title">"A maioria de..." — singular ou plural?</div>
+    <div class="card-body">
+      <p><em>"A maioria dos candidatos <strong>passou</strong>."</em> → singular (concordância com núcleo "maioria") ✅</p>
+      <p><em>"A maioria dos candidatos <strong>passaram</strong>."</em> → também aceito! (concordância atrativa) ✅</p>
+      <div class="hbox hbox-b">💡 Expressões partitivas (a maioria, a maior parte, a metade, um terço...) admitem concordância com o <strong>núcleo</strong> ou com o <strong>complemento</strong>. Ambas estão corretas!</div>
+    </div>
+  </div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🧠 Bizu</div>
+    <div class="card-title">Pronome relativo "que" — com o antecedente</div>
+    <div class="card-body">
+      <p><em>"Fui eu que <strong>paguei</strong>."</em> → "eu" é o antecedente → 1ª pessoa singular</p>
+      <p><em>"Foi você que <strong>pagou</strong>."</em> → "você" = 3ª pessoa → pagou</p>
+      <p><em>"Fomos nós que <strong>pagamos</strong>."</em> → "nós" = 1ª pessoa plural → pagamos</p>
+      <div class="hbox hbox-r">⚠️ A banca adora a estrutura "sou eu que..." — o verbo concorda com o sujeito da oração principal, não com "que".</div>
+    </div>
+  </div>
+
+  <div class="stitle">Concordância Nominal</div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🎯 Mnemônico</div>
+    <div class="card-title">Adjetivo + vários substantivos: qual gênero usar?</div>
+    <div class="card-body">
+      <ul>
+        <li>Todos masculinos → adjetivo <strong>masculino plural</strong></li>
+        <li>Todos femininos → adjetivo <strong>feminino plural</strong></li>
+        <li>Mistura (masc + fem) → adjetivo <strong>masculino plural</strong></li>
+        <li>Adjetivo <strong>antes</strong> dos substantivos → concorda com o <strong>mais próximo</strong></li>
+      </ul>
+      <div class="hbox">Ex: <em>"Encontrei livro e caneta <strong>velhos</strong>."</em> (após = masc. plural) | <em>"Encontrei <strong>velha</strong> caneta e livro."</em> (antes = mais próximo)</div>
+    </div>
+  </div>
+
+  <div class="card cuidado">
+    <div class="cuidado-tag">⚠️ Palavras Invariáveis</div>
+    <div class="card-title">Estas palavras nunca variam em gênero/número</div>
+    <div class="card-body">
+      <div class="chips">
+        <span class="chip ch-red">alerta</span>
+        <span class="chip ch-red">menos</span>
+        <span class="chip ch-red">pseudo</span>
+        <span class="chip ch-red">extra</span>
+        <span class="chip ch-red">meio (advérbio)</span>
+        <span class="chip ch-red">bastante (quantidade)</span>
+      </div>
+      <p style="margin-top:8px"><em>"Ela estava <strong>meio</strong> cansada."</em> ✅ (meio = advérbio, não varia) <br><em>"Ela estava <strong>meia</strong> cansada."</em> ❌</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     P4: REGÊNCIA
+══════════════════════════════════ -->
+<div id="p4" class="page">
+
+  <div class="stitle">Regência Verbal — Os Mais Cobrados</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🏆 #1 mais cobrado</div>
+    <div class="card-title">PREFERIR: nunca com "do que"!</div>
+    <div class="card-body">
+      <div class="hbox hbox-r">🚫 <strong>ERRADO:</strong> <em>"Prefiro café <strong>do que</strong> chá."</em><br>✅ <strong>CERTO:</strong> <em>"Prefiro café <strong>a</strong> chá."</em></div>
+      <p>Preferir rege VTD + VTI com preposição <strong>"a"</strong>. O uso de "do que" é coloquial e <strong>errado</strong> na norma culta. Banca certa sempre cobra isso!</p>
+    </div>
+  </div>
+
+  <div class="card regra">
+    <div class="regra-tag">📋 Tabela Essencial</div>
+    <div class="card-title">Verbos e suas preposições</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Verbo</th><th>Preposição</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Obedecer / Desobedecer</strong></td><td>a</td><td><em>Obedece <strong>às</strong> leis.</em></td></tr>
+          <tr><td><strong>Assistir</strong> (= ver)</td><td>a</td><td><em>Assisti <strong>ao</strong> jogo.</em></td></tr>
+          <tr><td><strong>Assistir</strong> (= ajudar)</td><td>direto</td><td><em>O médico assistiu o paciente.</em></td></tr>
+          <tr><td><strong>Visar</strong> (= almejar)</td><td>a</td><td><em>Visa <strong>ao</strong> sucesso.</em></td></tr>
+          <tr><td><strong>Visar</strong> (= assinar)</td><td>direto</td><td><em>Visou o documento.</em></td></tr>
+          <tr><td><strong>Aspirar</strong> (= desejar)</td><td>a</td><td><em>Aspira <strong>ao</strong> cargo.</em></td></tr>
+          <tr><td><strong>Aspirar</strong> (= inalar)</td><td>direto</td><td><em>Aspirou o pó.</em></td></tr>
+          <tr><td><strong>Implicar</strong> (= acarretar)</td><td>direto</td><td><em>Implica mudança.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🎯 Mnemônico</div>
+    <div class="card-title">ASSISTIR, ASPIRAR, VISAR — o verbo "muda de personalidade"</div>
+    <div class="card-body">
+      <p>Esses três verbos têm <strong>dois significados</strong> e a preposição muda conforme o sentido. Para lembrar:</p>
+      <div class="hbox hbox-p">🧠 <strong>AAV = Ambíguos e Variáveis</strong><br>Se o sentido for "ver/desejar/almejar" → sempre preposição <strong>"a"</strong>.<br>Se o sentido for "físico/concreto" → transitivo <strong>direto</strong>.</div>
+    </div>
+  </div>
+
+  <div class="stitle">Regência Nominal</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🥇 Nominal</div>
+    <div class="card-title">Adjetivos e suas preposições — os mais cobrados</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Palavra</th><th>Preposição</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Apto, capaz, hábil</strong></td><td>para</td></tr>
+          <tr><td><strong>Contrário, favorável</strong></td><td>a</td></tr>
+          <tr><td><strong>Necessário, indispensável</strong></td><td>a / para</td></tr>
+          <tr><td><strong>Compatível, incompatível</strong></td><td>com</td></tr>
+          <tr><td><strong>Ansioso, curioso</strong></td><td>por / para</td></tr>
+          <tr><td><strong>Imune, isento</strong></td><td>de</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     P5: PRONOMES
+══════════════════════════════════ -->
+<div id="p5" class="page">
+
+  <div class="stitle">Colocação Pronominal — Regra dos 3 casos</div>
+
+  <div class="card regra">
+    <div class="regra-tag">📌 Os 3 Casos</div>
+    <div class="card-title">Próclise · Ênclise · Mesóclise</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Posição</th><th>Nome</th><th>Quando usar</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Antes</strong></td><td>Próclise</td><td>Palavras atrativas presentes</td></tr>
+          <tr><td><strong>Depois</strong></td><td>Ênclise</td><td>Início de oração / imperativo afirmativo</td></tr>
+          <tr><td><strong>No meio</strong></td><td>Mesóclise</td><td>Futuro do presente / futuro do pretérito</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🏆 Mnemônico — Próclise</div>
+    <div class="card-title">PNCA = as 4 palavras que atraem o pronome ANTES do verbo</div>
+    <div class="card-body">
+      <div class="hbox hbox-p">
+        🧠 <strong>P</strong>alavras negativas (não, nunca, jamais, ninguém)<br>
+        🧠 <strong>N</strong>omes relativos e interrogativos (que, quem, quanto, onde)<br>
+        🧠 <strong>C</strong>onjunções subordinativas (se, quando, porque, embora...)<br>
+        🧠 <strong>A</strong>dvérbios (sempre, já, ainda, logo, aqui, aí...)<br><br>
+        👉 <strong>PNCA = Pronome Não Comes Aqui!</strong>
+      </div>
+      <p><em>"<strong>Não</strong> se preocupe."</em> ✅ (negação atrai próclise)<br><em>"<strong>Quando</strong> me chamaram..."</em> ✅ (conjunção atrai próclise)</p>
+    </div>
+  </div>
+
+  <div class="card cuidado">
+    <div class="cuidado-tag">⚠️ Ênclise proibida</div>
+    <div class="card-title">Jamais use ênclise nessas situações</div>
+    <div class="card-body">
+      <ul>
+        <li>Início absoluto de frase: <em>"<strong>Me</strong> chame"</em> ❌ → <em>"Chame-<strong>me</strong>"</em> ✅</li>
+        <li>Após palavra atrativa: <em>"Não chame-me"</em> ❌ → <em>"Não me chame"</em> ✅</li>
+        <li>Com verbo no gerúndio (sem preposição "em"): ênclise é a norma — <em>"fazendo-o"</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🧠 Mesóclise</div>
+    <div class="card-title">Futuro = pronome no meio do verbo</div>
+    <div class="card-body">
+      <p><em>"<strong>Dir-lhe-ei</strong> a verdade."</em> (= Direi-lhe / Lhe direi após atrativo)<br><em>"<strong>Far-me-á</strong> bem."</em> (= Fará + me, no futuro)</p>
+      <div class="hbox">💡 Na prática, a mesóclise é rara e literária. Em provas, aparece como alternativa "certa" que parece estranha — não descarte!</div>
+    </div>
+  </div>
+
+  <div class="stitle">Pronomes Pessoais — Casos Retos e Oblíquos</div>
+
+  <div class="card banca">
+    <div class="banca-tag">🎯 Banca</div>
+    <div class="card-title">Eu vs. Mim — quando usar cada um</div>
+    <div class="card-body">
+      <p><strong>EU</strong> → sujeito (faz a ação): <em>"<strong>Eu</strong> fui à reunião."</em></p>
+      <p><strong>MIM</strong> → complemento (recebe a ação): <em>"Para <strong>mim</strong> é difícil."</em></p>
+      <div class="hbox hbox-r">⚠️ <em>"Para <strong>mim</strong> fazer"</em> ❌ — quando "mim" é sujeito de infinitivo, use <strong>"eu"</strong>: <em>"Para <strong>eu</strong> fazer."</em></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     P6: CONJUNÇÕES
+══════════════════════════════════ -->
+<div id="p6" class="page">
+
+  <div class="stitle">Conjunções por Relação de Sentido</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">🏆 Mais cobrado em provas</div>
+    <div class="card-title">Tabela Geral das Conjunções</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Relação</th><th>Conjunções</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:var(--red)">Adversativa</strong></td><td>mas, porém, contudo, todavia, entretanto, no entanto, não obstante</td></tr>
+          <tr><td><strong style="color:var(--green)">Conclusiva</strong></td><td>portanto, logo, pois (pós-verbo), por isso, assim, então, por conseguinte</td></tr>
+          <tr><td><strong style="color:var(--orange)">Causal</strong></td><td>porque, pois (pré-verbo), já que, uma vez que, visto que, como (início)</td></tr>
+          <tr><td><strong style="color:var(--purple)">Concessiva</strong></td><td>embora, ainda que, mesmo que, conquanto, apesar de que, por mais que</td></tr>
+          <tr><td><strong style="color:var(--blue)">Final</strong></td><td>para que, a fim de que, com o intuito de que</td></tr>
+          <tr><td><strong style="color:var(--teal)">Temporal</strong></td><td>quando, enquanto, assim que, logo que, depois que, mal (=assim que)</td></tr>
+          <tr><td><strong style="color:var(--gold)">Comparativa</strong></td><td>como, assim como, tal qual, tanto quanto, mais que, menos que</td></tr>
+          <tr><td><strong style="color:var(--pink)">Conformativa</strong></td><td>conforme, segundo, consoante, de acordo com</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card mnemo">
+    <div class="mnemo-tag">🎯 Mnemônico</div>
+    <div class="card-title">POIS — a conjunção camaleão</div>
+    <div class="card-body">
+      <div class="compare">
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--orange)">POIS = Causa</div>
+          <ul><li>Vem <strong>antes</strong> do verbo</li><li><em>"Saí, <strong>pois</strong> estava cansado."</em></li><li>(= porque)</li></ul>
+        </div>
+        <div class="cbox">
+          <div class="cbox-title" style="color:var(--green)">POIS = Conclusão</div>
+          <ul><li>Vem <strong>após</strong> o verbo</li><li><em>"Estava cansado; saí, <strong>pois</strong>."</em></li><li>(= portanto)</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card cuidado">
+    <div class="cuidado-tag">⚠️ Concessiva ≠ Adversativa</div>
+    <div class="card-title">Embora × Mas — diferença crucial</div>
+    <div class="card-body">
+      <p><strong>EMBORA</strong> (concessiva): a oração que introduz admite a ideia, mas o resultado é inesperado.</p>
+      <p><em>"<strong>Embora</strong> estudasse, não passou."</em> — o estudo é fato concedido; o não passar é surpreendente.</p>
+      <p><strong>MAS</strong> (adversativa): simplesmente opõe duas ideias.</p>
+      <p><em>"Estudou, <strong>mas</strong> não passou."</em> — oposição direta.</p>
+      <div class="hbox hbox-b">💡 Concessiva → verbo no <strong>subjuntivo</strong> (estudasse). Adversativa → verbos no indicativo.</div>
+    </div>
+  </div>
+
+  <div class="card banca">
+    <div class="banca-tag">🎯 Dica Quadrix / CESPE</div>
+    <div class="card-title">Substituição de conjunções sem alterar sentido</div>
+    <div class="card-body">
+      <p>Bancas adoram pedir: <em>"Substitua X por Y sem alterar o sentido."</em> Macete:</p>
+      <ul>
+        <li>"mas" ↔ "porém" ↔ "contudo" ↔ "entretanto" (adversativas, intercambiáveis)</li>
+        <li>"embora" ↔ "ainda que" ↔ "mesmo que" (concessivas, exigem subjuntivo)</li>
+        <li>"porque" ↔ "já que" ↔ "visto que" (causais — atenção ao modo verbal)</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     P7: MEGA-BIZUS
+══════════════════════════════════ -->
+<div id="p7" class="page">
+
+  <div class="stitle">Os Bizus que mais rendem pontos</div>
+
+  <div class="mega-grid">
+
+    <div class="mega-item">
+      <div class="mega-icon">🥇</div>
+      <div class="mega-body">
+        <div class="mega-title">Crase antes de "terra", "casa" e "bordo"</div>
+        <div class="mega-desc">Sem artigo = sem crase: <em>"Voltei a casa."</em> Com artigo = com crase: <em>"Voltei à casa dos meus pais."</em> A presença do complemento determina o artigo.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">🔥</div>
+      <div class="mega-body">
+        <div class="mega-title">PREFERIR + "a" (nunca "do que")</div>
+        <div class="mega-desc"><em>"Prefiro estudar <strong>a</strong> dormir."</em> O uso de <strong>"do que"</strong> com preferir é erro garantido na norma culta. Banca cobra toda hora.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">🧠</div>
+      <div class="mega-body">
+        <div class="mega-title">Sujeito + "nem" — verbo no plural</div>
+        <div class="mega-desc"><em>"<strong>Nem</strong> João <strong>nem</strong> Maria <strong>foram</strong>."</em> Quando "nem...nem" une sujeitos, o verbo vai para o plural.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">⚡</div>
+      <div class="mega-body">
+        <div class="mega-title">Início de frase: nunca pronome oblíquo átono</div>
+        <div class="mega-desc"><em>"Me deram a notícia"</em> ❌ (início absoluto de oração). <em>"Deram-me a notícia"</em> ✅. Bancas adoram colocar "Me disse que..." como errado.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">📌</div>
+      <div class="mega-body">
+        <div class="mega-title">"Há" × "A" — tempo decorrido</div>
+        <div class="mega-desc"><strong>HÁ</strong> = tempo passado: <em>"Há dois anos não o vejo."</em> <strong>A</strong> = tempo futuro/distância: <em>"Daqui a dois anos estarei formado."</em> Substitua por "faz" → se couber, use HÁ.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">💎</div>
+      <div class="mega-body">
+        <div class="mega-title">Verbos impessoais: sempre singular</div>
+        <div class="mega-desc"><em>"<strong>Há</strong> muitas vagas."</em> ✅ (<strong>nunca</strong> "hão"). <em>"<strong>Faz</strong> dez anos."</em> ✅ (<strong>nunca</strong> "fazem"). Verbos impessoais (haver, fazer, chover) nunca variam.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">🎯</div>
+      <div class="mega-body">
+        <div class="mega-title">"Onde" × "Aonde" — movimento ou não?</div>
+        <div class="mega-desc"><strong>ONDE</strong> = lugar estático (estar, ficar, morar). <strong>AONDE</strong> = lugar com movimento (ir, chegar, voltar). <em>"<strong>Aonde</strong> você vai?"</em> / <em>"<strong>Onde</strong> você mora?"</em></div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">🔑</div>
+      <div class="mega-body">
+        <div class="mega-title">Coesão: pronome retoma substantivo, não ideia vaga</div>
+        <div class="mega-desc">Em questões de coesão, o pronome deve ter um <strong>referente claro</strong> no texto. Ambiguidade referencial = falta de coesão. Bancas trocam "o" por "a" para criar erros de concordância/referência.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">🏆</div>
+      <div class="mega-body">
+        <div class="mega-title">Adjunto adnominal vs. Complemento nominal</div>
+        <div class="mega-desc"><strong>Adj. adnominal</strong> refere-se a <em>substantivo</em>: <em>"amor <strong>de mãe</strong>"</em>. <strong>Compl. nominal</strong> refere-se a <em>adjetivo/advérbio</em>: <em>"favorável <strong>à proposta</strong>"</em>. A preposição faz toda a diferença.</div>
+      </div>
+    </div>
+
+    <div class="mega-item">
+      <div class="mega-icon">✨</div>
+      <div class="mega-body">
+        <div class="mega-title">Figuras de linguagem mais cobradas</div>
+        <div class="mega-desc"><strong>Metáfora</strong> = comparação implícita. <strong>Metonímia</strong> = substituição (parte pelo todo, autor pela obra). <strong>Antítese</strong> = oposição de ideias. <strong>Ironia</strong> = dizer o contrário do que pensa. <strong>Eufemismo</strong> = suavizar o sentido.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="stitle">Acentuação — Regras Rápidas</div>
+
+  <div class="card bizu">
+    <div class="bizu-tag">📌 Acentuação</div>
+    <div class="card-title">O que mudou com o Novo Acordo Ortográfico (2009)</div>
+    <div class="card-body">
+      <table>
+        <thead><tr><th>Antes</th><th>Depois (correto)</th><th>Regra</th></tr></thead>
+        <tbody>
+          <tr><td>pára, pólo, péla</td><td><strong>para, polo, pela</strong></td><td>Monossílabos tônicos "para" e similares perderam o acento</td></tr>
+          <tr><td>êle, ôle (verbal)</td><td><strong>ele, ole</strong></td><td>Verbos com "ee" e "oo" perderam o acento diferencial</td></tr>
+          <tr><td>pêlo, pêra</td><td><strong>pelo, pera</strong></td><td>Acento diferencial eliminado</td></tr>
+          <tr><td>fêei-o</td><td><strong>fee-lo</strong></td><td>Infinitivo + pronome: sem acento circunflexo</td></tr>
+        </tbody>
+      </table>
+      <div class="hbox hbox-r">⚠️ <strong>Ainda se acentuam:</strong> pôde (passado) × pode (presente) | pôr (verbo) × por (preposição)</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-bar">
+    <div class="cta-emoji">🚀</div>
+    <div class="cta-title">Quer o material completo?</div>
+    <div class="cta-sub">Resumos + simulados + questões comentadas para o seu concurso específico — com a metodologia do Prof Hansk</div>
+    <div class="cta-badge">Prof Hansk · Concursos Públicos</div>
+  </div>
+
+</div>
+
+</main>
+
+<!-- MARCA D'ÁGUA -->
+<div id="marca">
+  <div class="marca-dot"></div>
+  <span class="marca-txt">Prof Hansk · Concursos Públicos</span>
+</div>
+
+<script>
+document.querySelectorAll('.ntab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.ntab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById(t.dataset.p).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
