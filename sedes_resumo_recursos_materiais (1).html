@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Resumo · Recursos Materiais, Patrimônio e Compras · SEDES 2026</title>
+<style>
+:root{
+  --bg:#0f1117;--surface:#181c27;--surface2:#1f2436;--line:#2e3450;
+  --txt:#eef0f8;--muted:#8b91b0;
+  --gold:#e8b84b;--green:#3ecf72;--red:#f0574f;--blue:#5aabf5;--purple:#a78bfa;--orange:#fb923c;--teal:#2dd4bf;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);font-size:16px;line-height:1.6;padding-bottom:30px}
+
+/* HEADER */
+header{padding:24px 18px 16px;background:linear-gradient(150deg,#141929 0%,#0f1117 100%);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.eyebrow{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:800}
+h1{font-size:19px;font-weight:900;margin-top:4px;letter-spacing:-.3px}
+.sub{font-size:12px;color:var(--muted);margin-top:3px}
+.badge-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.badge{padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.05em}
+.b-gold{background:rgba(232,184,75,.15);border:1px solid rgba(232,184,75,.4);color:var(--gold)}
+.b-blue{background:rgba(90,171,245,.13);border:1px solid rgba(90,171,245,.35);color:var(--blue)}
+.b-green{background:rgba(62,207,114,.12);border:1px solid rgba(62,207,114,.35);color:var(--green)}
+
+/* NAV TABS */
+nav{display:flex;gap:8px;overflow-x:auto;padding:13px 14px 10px;position:sticky;top:105px;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:9px 16px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap}
+.tab.on{background:var(--gold);color:#1a1200;border-color:var(--gold)}
+
+/* MAIN */
+main{padding:16px 15px}
+section{display:none;animation:fu .22s ease}
+section.on{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px;overflow:hidden}
+.card-title{font-size:16px;font-weight:900;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.card-subtitle{font-size:12px;color:var(--muted);margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.card h3{font-size:13.5px;font-weight:800;color:var(--gold);margin:14px 0 7px;text-transform:uppercase;letter-spacing:.08em}
+.card p{font-size:14px;color:#cdd0e0;margin-bottom:9px;line-height:1.65}
+.card ul,.card ol{padding-left:18px;margin-bottom:10px}
+.card li{font-size:14px;color:#cdd0e0;margin-bottom:6px;line-height:1.6}
+strong{color:var(--txt);font-weight:700}
+em{color:var(--gold);font-style:normal;font-weight:700}
+
+/* BIZU */
+.bizu{background:rgba(232,184,75,.07);border:1px solid rgba(232,184,75,.3);border-radius:11px;padding:12px 14px;margin:12px 0 6px;font-size:13.5px;color:#e8d9a0;line-height:1.6}
+.bizu b{color:var(--gold);display:block;margin-bottom:3px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.trap{background:rgba(240,87,79,.07);border:1px solid rgba(240,87,79,.3);border-radius:11px;padding:12px 14px;margin:12px 0 6px;font-size:13.5px;color:#f5b4b0;line-height:1.6}
+.trap b{color:var(--red);display:block;margin-bottom:3px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.info{background:rgba(90,171,245,.07);border:1px solid rgba(90,171,245,.28);border-radius:11px;padding:12px 14px;margin:12px 0 6px;font-size:13.5px;color:#a8ccf0;line-height:1.6}
+.info b{color:var(--blue);display:block;margin-bottom:3px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px;border-radius:10px;overflow:hidden}
+thead tr{background:var(--surface2)}
+th{text-align:left;padding:9px 10px;color:var(--gold);font-weight:800;font-size:11.5px;letter-spacing:.07em;border-bottom:1px solid var(--line)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);color:#cdd0e0;vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+
+/* PILL TAGS */
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px}
+.tag{padding:4px 10px;border-radius:99px;font-size:11.5px;font-weight:700}
+.t-a{background:rgba(62,207,114,.15);color:var(--green);border:1px solid rgba(62,207,114,.3)}
+.t-b{background:rgba(90,171,245,.13);color:var(--blue);border:1px solid rgba(90,171,245,.28)}
+.t-c{background:rgba(251,146,60,.12);color:var(--orange);border:1px solid rgba(251,146,60,.28)}
+
+/* STEP */
+.steps{counter-reset:st;margin:10px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.step::before{counter-increment:st;content:counter(st);flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#1a1200;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.step-body{font-size:13.5px;color:#cdd0e0;line-height:1.6;padding-top:3px}
+.step-body strong{color:var(--gold)}
+
+/* MODALIDADE CARDS */
+.modal-grid{display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.modal-card{border-radius:12px;border:1px solid var(--line);padding:13px 14px;background:var(--surface2)}
+.modal-name{font-size:14px;font-weight:800;margin-bottom:4px}
+.modal-desc{font-size:13px;color:#b0b8d4;line-height:1.55}
+.modal-tag{display:inline-block;margin-top:6px;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700}
+
+/* COMPARATIVO */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.compare-box{border-radius:12px;border:1px solid var(--line);padding:13px;background:var(--surface2)}
+.compare-title{font-size:12.5px;font-weight:800;margin-bottom:8px;text-align:center;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.compare-box ul{padding-left:14px}
+.compare-box li{font-size:12.5px;color:#b0b8d4;margin-bottom:5px;line-height:1.5}
+
+/* APOSTAS */
+.aposta-card{border-radius:12px;background:var(--surface2);border:1px solid rgba(232,184,75,.2);padding:14px;margin-bottom:10px}
+.aposta-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.aposta-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#1a1200;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.aposta-titulo{font-size:14px;font-weight:800}
+.aposta-desc{font-size:13px;color:#b8bdd4;line-height:1.6}
+.prob{display:inline-block;margin-top:6px;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:800;background:rgba(62,207,114,.15);color:var(--green);border:1px solid rgba(62,207,114,.3)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">SEDES/DF 2026 · Quadrix · TDAS 202</div>
+  <h1>📦 Materiais, Patrimônio e Compras</h1>
+  <div class="sub">Tópico 4 · Conhecimentos Específicos · Técnico Administrativo</div>
+  <div class="badge-row">
+    <span class="badge b-gold">🎁 Amostra Grátis</span>
+    <span class="badge b-blue">40 pts Específicos</span>
+    <span class="badge b-green">Banca Quadrix</span>
+  </div>
+</header>
+
+<nav id="nav">
+  <button class="tab on" data-s="s0">🗂️ Materiais</button>
+  <button class="tab" data-s="s1">🏛️ Patrimônio</button>
+  <button class="tab" data-s="s2">⚖️ Licitações</button>
+  <button class="tab" data-s="s3">🎯 Apostas</button>
+</nav>
+
+<main>
+
+<!-- ===== TAB 0: MATERIAIS ===== -->
+<section id="s0" class="on">
+
+  <div class="card">
+    <div class="card-title">📋 Classificação de Materiais</div>
+    <div class="card-subtitle">Como a Quadrix cobra: diferenciar material de consumo × permanente</div>
+
+    <div class="compare">
+      <div class="compare-box">
+        <div class="compare-title" style="color:var(--orange)">🔥 Consumo</div>
+        <ul>
+          <li>Perdem identidade ao ser usados</li>
+          <li>Durabilidade ≤ 2 anos em uso normal</li>
+          <li>Ex: papel, caneta, café, toner</li>
+          <li>Não vão ao patrimônio</li>
+        </ul>
+      </div>
+      <div class="compare-box">
+        <div class="compare-title" style="color:var(--blue)">🏛️ Permanente</div>
+        <ul>
+          <li>Mantêm identidade após uso</li>
+          <li>Durabilidade &gt; 2 anos</li>
+          <li>Ex: mesa, computador, veículo</li>
+          <li>São tombados no patrimônio</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="trap"><b>⚠️ Pegadinha clássica</b>Caneta é material de <strong>consumo</strong>. Grampeador é material <strong>permanente</strong>. A Quadrix adora inverter isso na prova!</div>
+
+    <h3>Outras classificações importantes</h3>
+    <table>
+      <thead><tr><th>Tipo</th><th>Conceito</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Estratégico</strong></td><td>Essencial para operação; difícil substituição; compra com planejamento antecipado</td></tr>
+        <tr><td><strong>Crítico</strong></td><td>Abastecimento incerto; ruptura causa dano grave; manter estoque elevado</td></tr>
+        <tr><td><strong>Genérico</strong></td><td>Ampla disponibilidade; baixo risco de desabastecimento</td></tr>
+        <tr><td><strong>Especial</strong></td><td>Características peculiares; fornecedores limitados</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Curva ABC</div>
+    <div class="card-subtitle">Ferramenta de priorização — clássica da Quadrix</div>
+
+    <div class="tags">
+      <span class="tag t-a">Classe A · Alta prioridade</span>
+      <span class="tag t-b">Classe B · Média</span>
+      <span class="tag t-c">Classe C · Baixa</span>
+    </div>
+
+    <table>
+      <thead><tr><th>Classe</th><th>% dos Itens</th><th>% do Valor</th><th>Controle</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--green)"><strong>A</strong></td><td>~20%</td><td>~80%</td><td>Rigoroso / Constante</td></tr>
+        <tr><td style="color:var(--blue)"><strong>B</strong></td><td>~30%</td><td>~15%</td><td>Intermediário</td></tr>
+        <tr><td style="color:var(--orange)"><strong>C</strong></td><td>~50%</td><td>~5%</td><td>Simplificado</td></tr>
+      </tbody>
+    </table>
+
+    <div class="bizu"><b>🧠 Bizu</b><strong>Poucos itens, muito valor = Classe A.</strong> A curva ABC é baseada no Princípio de Pareto (80/20). Itens de classe A exigem controle rigoroso por representarem grande parte dos gastos, mesmo sendo poucos.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📦 Gestão de Estoques</div>
+    <div class="card-subtitle">Conceitos essenciais: mínimo, máximo e ponto de pedido</div>
+
+    <h3>Níveis de estoque</h3>
+    <table>
+      <thead><tr><th>Conceito</th><th>Definição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Estoque Mínimo (Segurança)</strong></td><td>Quantidade mínima para cobrir atrasos do fornecedor; evita ruptura</td></tr>
+        <tr><td><strong>Estoque Máximo</strong></td><td>Limite superior do estoque; evita desperdício e custo excessivo de armazenagem</td></tr>
+        <tr><td><strong>Ponto de Pedido (PP)</strong></td><td>Nível em que novo pedido deve ser feito; considera o tempo de ressuprimento</td></tr>
+        <tr><td><strong>Giro de Estoque</strong></td><td>Quantas vezes o estoque se renova em um período; alto giro = boa gestão</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info"><b>📐 Fórmula Ponto de Pedido</b>PP = Consumo Médio Diário × Tempo de Ressuprimento + Estoque de Segurança</div>
+
+    <h3>Métodos de Avaliação de Estoques</h3>
+    <table>
+      <thead><tr><th>Método</th><th>Lógica</th><th>Quando usar</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PEPS / FIFO</strong></td><td>Primeiro que entra, primeiro que sai</td><td>Perecíveis; evita obsolescência</td></tr>
+        <tr><td><strong>UEPS / LIFO</strong></td><td>Último que entra, primeiro que sai</td><td>Não aceito no setor público para fins fiscais</td></tr>
+        <tr><td><strong>Média Ponderada</strong></td><td>Custo médio de todas as entradas</td><td>Mais usado no setor público</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap"><b>⚠️ Cuidado!</b>O método UEPS (LIFO) <strong>não é aceito pelo fisco brasileiro</strong> para fins de avaliação de estoques. A Quadrix já cobrou isso!</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏗️ Armazenagem</div>
+    <div class="card-subtitle">Organização do espaço físico e princípios de guarda</div>
+
+    <h3>Princípios fundamentais</h3>
+    <ul>
+      <li><strong>Princípio PEPS na armazenagem:</strong> mercadoria mais antiga sempre à frente para saída primeiro</li>
+      <li><strong>Rotatividade:</strong> materiais de alto giro devem ficar em locais de fácil acesso</li>
+      <li><strong>Separação por categoria:</strong> materiais de consumo × permanentes em locais distintos</li>
+      <li><strong>Identificação:</strong> etiquetas, códigos, prateleiras identificadas</li>
+    </ul>
+
+    <h3>Métodos de armazenagem</h3>
+    <table>
+      <thead><tr><th>Método</th><th>Característica</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Por agrupamento</strong></td><td>Itens semelhantes juntos; facilita localização</td></tr>
+        <tr><td><strong>Por frequência</strong></td><td>Itens mais usados próximos à saída</td></tr>
+        <tr><td><strong>Especial</strong></td><td>Para produtos perigosos, frágeis ou de temperatura controlada</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<!-- ===== TAB 1: PATRIMÔNIO ===== -->
+<section id="s1">
+
+  <div class="card">
+    <div class="card-title">🏷️ Tombamento</div>
+    <div class="card-subtitle">Registro e controle dos bens permanentes do órgão</div>
+
+    <p>O <strong>tombamento</strong> é o ato de <em>registrar formalmente</em> um bem no acervo patrimonial do órgão, com atribuição de número de identificação (plaqueta ou código de barras).</p>
+
+    <h3>O que é tombado?</h3>
+    <ul>
+      <li>Bens permanentes (durabilidade &gt; 2 anos)</li>
+      <li>Bens adquiridos por compra, doação, cessão, permuta ou produção própria</li>
+      <li>Qualquer bem que integrate o patrimônio público</li>
+    </ul>
+
+    <div class="bizu"><b>🧠 Bizu</b>Tombamento ≠ Tombamento histórico (IPHAN). No direito administrativo patrimonial, tombamento é o <strong>registro do bem no inventário</strong>, com número patrimonial. Não confunda com preservação cultural!</div>
+
+    <h3>Informações do registro patrimonial</h3>
+    <table>
+      <thead><tr><th>Dado</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td>Número patrimonial</td><td>Identificação única do bem (plaqueta)</td></tr>
+        <tr><td>Descrição</td><td>Características do bem (marca, modelo, cor, série)</td></tr>
+        <tr><td>Valor</td><td>Custo de aquisição ou valor de mercado</td></tr>
+        <tr><td>Localização</td><td>Setor/unidade onde está o bem</td></tr>
+        <tr><td>Responsável</td><td>Agente patrimonial detentor da carga</td></tr>
+        <tr><td>Data</td><td>Data de aquisição/incorporação</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Inventário Patrimonial</div>
+    <div class="card-subtitle">Levantamento periódico dos bens do órgão</div>
+
+    <h3>Tipos de inventário</h3>
+    <table>
+      <thead><tr><th>Tipo</th><th>Periodicidade</th><th>Finalidade</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Anual</strong></td><td>1x por ano</td><td>Verificação geral obrigatória ao fim do exercício</td></tr>
+        <tr><td><strong>Inicial</strong></td><td>Ao assumir o cargo</td><td>Registrar bens existentes ao início da gestão</td></tr>
+        <tr><td><strong>Final</strong></td><td>Ao deixar o cargo</td><td>Prestação de contas da gestão patrimonial</td></tr>
+        <tr><td><strong>Especial</strong></td><td>Quando necessário</td><td>Incêndio, furto, calamidade, transferência de setor</td></tr>
+        <tr><td><strong>Rotativo</strong></td><td>Contínuo</td><td>Verificação por amostragem ao longo do ano</td></tr>
+      </tbody>
+    </table>
+
+    <div class="bizu"><b>🧠 Bizu</b>O inventário anual é <strong>obrigatório</strong> e deve ser feito até o encerramento do exercício financeiro. Sua finalidade principal é verificar a <strong>existência física</strong> e a <strong>situação</strong> dos bens.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📤 Baixa de Bens</div>
+    <div class="card-subtitle">Saída definitiva do bem do patrimônio público</div>
+
+    <h3>Formas de desfazimento</h3>
+    <table>
+      <thead><tr><th>Forma</th><th>Conceito</th><th>Exige licitação?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Alienação</strong></td><td>Transferência onerosa de propriedade (venda)</td><td>✅ Sim (regra geral)</td></tr>
+        <tr><td><strong>Doação</strong></td><td>Transferência gratuita; interesse social justificado</td><td>❌ Dispensa</td></tr>
+        <tr><td><strong>Permuta</strong></td><td>Troca de bem por outro de valor equivalente</td><td>⚠️ Geralmente dispensa</td></tr>
+        <tr><td><strong>Inutilização</strong></td><td>Destruição de bem irrecuperável e inservível</td><td>❌ Não se aplica</td></tr>
+        <tr><td><strong>Abandono</strong></td><td>Derrelição; rara na Administração Pública</td><td>❌ Não se aplica</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap"><b>⚠️ Não confunda!</b><strong>Cessão de uso</strong> e <strong>comodato</strong> NÃO são baixa patrimonial — o bem continua no patrimônio, apenas muda o usuário temporariamente. A baixa é <strong>definitiva</strong>.</div>
+
+    <h3>Agente Patrimonial</h3>
+    <p>É o servidor <strong>responsável pela guarda e conservação</strong> dos bens que lhe foram confiados (carga patrimonial). Responde pela perda, dano ou extravio.</p>
+
+    <div class="bizu"><b>🧠 Bizu</b>Alienação de bens <strong>móveis</strong> exige, em regra, avaliação prévia + licitação (leilão). Já bens <strong>imóveis</strong> exigem autorização legislativa além da licitação.</div>
+  </div>
+
+</section>
+
+<!-- ===== TAB 2: LICITAÇÕES ===== -->
+<section id="s2">
+
+  <div class="card">
+    <div class="card-title">⚖️ Lei nº 14.133/2021</div>
+    <div class="card-subtitle">Nova Lei de Licitações e Contratos — em vigor desde 2023</div>
+
+    <div class="info"><b>📌 Atenção</b>A Lei 14.133/2021 <strong>revogou</strong> a Lei 8.666/93, a Lei do Pregão (10.520/02) e o RDC (12.462/11). A Quadrix cobra a lei <strong>nova</strong> no SEDES 2026!</div>
+
+    <h3>Princípios (art. 5º)</h3>
+    <div class="tags">
+      <span class="tag t-a">Legalidade</span>
+      <span class="tag t-a">Impessoalidade</span>
+      <span class="tag t-a">Moralidade</span>
+      <span class="tag t-b">Publicidade</span>
+      <span class="tag t-b">Eficiência</span>
+      <span class="tag t-b">Interesse público</span>
+      <span class="tag t-c">Desenvolvimento nacional</span>
+      <span class="tag t-c">Competitividade</span>
+      <span class="tag t-c">Proporcionalidade</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗂️ Modalidades de Licitação</div>
+    <div class="card-subtitle">5 modalidades na Lei 14.133/2021 — caiu o Convite e a Tomada de Preços!</div>
+
+    <div class="modal-grid">
+      <div class="modal-card">
+        <div class="modal-name" style="color:var(--green)">🔨 Pregão</div>
+        <div class="modal-desc">Bens e serviços comuns, independentemente do valor. Obrigatoriamente eletrônico. Fase de lances após julgamento das propostas.</div>
+        <span class="modal-tag" style="background:rgba(62,207,114,.13);color:var(--green);border:1px solid rgba(62,207,114,.3)">Mais usado</span>
+      </div>
+      <div class="modal-card">
+        <div class="modal-name" style="color:var(--blue)">🏗️ Concorrência</div>
+        <div class="modal-desc">Bens e serviços especiais e obras/serviços de engenharia de grande vulto. Critério: melhor técnica e preço ou maior desconto.</div>
+        <span class="modal-tag" style="background:rgba(90,171,245,.13);color:var(--blue);border:1px solid rgba(90,171,245,.28)">Alta complexidade</span>
+      </div>
+      <div class="modal-card">
+        <div class="modal-name" style="color:var(--purple)">🎨 Concurso</div>
+        <div class="modal-desc">Trabalhos técnicos, científicos ou artísticos. Avaliação por comissão especializada. Prêmio ao vencedor.</div>
+        <span class="modal-tag" style="background:rgba(167,139,250,.13);color:var(--purple);border:1px solid rgba(167,139,250,.28)">Obras intelectuais</span>
+      </div>
+      <div class="modal-card">
+        <div class="modal-name" style="color:var(--orange)">🏷️ Leilão</div>
+        <div class="modal-desc">Alienação de bens imóveis (exceções) e móveis inservíveis. Critério: maior lance. Vencedor quem oferecer mais.</div>
+        <span class="modal-tag" style="background:rgba(251,146,60,.12);color:var(--orange);border:1px solid rgba(251,146,60,.28)">Venda de bens</span>
+      </div>
+      <div class="modal-card">
+        <div class="modal-name" style="color:var(--teal)">💬 Diálogo Competitivo</div>
+        <div class="modal-desc">Contratações inovadoras complexas. A Administração dialoga com licitantes para desenvolver soluções antes do edital definitivo.</div>
+        <span class="modal-tag" style="background:rgba(45,212,191,.1);color:var(--teal);border:1px solid rgba(45,212,191,.25)">Novo na lei</span>
+      </div>
+    </div>
+
+    <div class="trap"><b>⚠️ Acabaram!</b>Convite e Tomada de Preços da Lei 8.666/93 <strong>não existem mais</strong> na Lei 14.133/2021. Se a questão trouxer essas modalidades como vigentes, está <strong>errada</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔄 Fases do Processo Licitatório</div>
+    <div class="card-subtitle">Sequência obrigatória — a ordem importa!</div>
+
+    <div class="steps">
+      <div class="step"><div class="step-body"><strong>Preparatória</strong> — Planejamento, definição do objeto, estimativa de preços, edital</div></div>
+      <div class="step"><div class="step-body"><strong>Divulgação do Edital</strong> — Publicação no Portal Nacional de Contratações Públicas (PNCP)</div></div>
+      <div class="step"><div class="step-body"><strong>Apresentação de Propostas e Lances</strong> — Competição entre os interessados</div></div>
+      <div class="step"><div class="step-body"><strong>Julgamento</strong> — Aplicação do critério de julgamento definido no edital</div></div>
+      <div class="step"><div class="step-body"><strong>Habilitação</strong> — Verificação da regularidade jurídica, técnica, econômica e fiscal do vencedor</div></div>
+      <div class="step"><div class="step-body"><strong>Fase Recursal</strong> — Prazo para interposição de recursos pelos participantes</div></div>
+      <div class="step"><div class="step-body"><strong>Homologação</strong> — Autoridade competente confirma o resultado e adjudica o objeto</div></div>
+    </div>
+
+    <div class="bizu"><b>🧠 Bizu</b>Na Lei 14.133/2021, o <strong>julgamento vem ANTES da habilitação</strong> (diferente da lei antiga). Isso agiliza o processo: só se verifica a documentação de quem ganhou.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✅ Critérios de Julgamento</div>
+    <div class="card-subtitle">Como a proposta vencedora é escolhida</div>
+
+    <table>
+      <thead><tr><th>Critério</th><th>Quando usar</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Menor Preço</strong></td><td>Objeto padronizado; qualidade garantida por especificação técnica</td></tr>
+        <tr><td><strong>Maior Desconto</strong></td><td>Sobre tabela pública de preços (ex: material de construção)</td></tr>
+        <tr><td><strong>Melhor Técnica e Preço</strong></td><td>Serviços especiais onde técnica e preço se complementam</td></tr>
+        <tr><td><strong>Maior Retorno Econômico</strong></td><td>Contratos de eficiência; ganho de economia para a Administração</td></tr>
+        <tr><td><strong>Maior Lance</strong></td><td>Leilão (venda de bens)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚫 Dispensa × Inexigibilidade</div>
+    <div class="card-subtitle">Contratação direta sem licitação — diferença essencial!</div>
+
+    <div class="compare">
+      <div class="compare-box">
+        <div class="compare-title" style="color:var(--orange)">Dispensa</div>
+        <ul>
+          <li>Licitação <strong>seria possível</strong>, mas a lei permite não fazer</li>
+          <li>Rol taxativo (art. 75)</li>
+          <li>Ex: emergência, valor baixo, guerra, calamidade</li>
+          <li>Competição seria <em>viável</em></li>
+        </ul>
+      </div>
+      <div class="compare-box">
+        <div class="compare-title" style="color:var(--red)">Inexigibilidade</div>
+        <ul>
+          <li>Licitação é <strong>impossível</strong> de realizar</li>
+          <li>Rol exemplificativo (art. 74)</li>
+          <li>Ex: fornecedor exclusivo, artista consagrado, serviço técnico singular</li>
+          <li>Competição é <em>inviável</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bizu"><b>🧠 Regra de ouro</b><strong>Dispensa</strong> = poderia licitar, mas <em>dispensa</em>. <strong>Inexigibilidade</strong> = <em>não tem como</em> licitar (impossibilidade lógica de competição).</div>
+  </div>
+
+</section>
+
+<!-- ===== TAB 3: APOSTAS ===== -->
+<section id="s3">
+
+  <div class="card">
+    <div class="card-title">🎯 Apostas para a Prova</div>
+    <div class="card-subtitle">Tópicos com maior probabilidade de cair na Quadrix · TDAS 202</div>
+
+    <div class="aposta-card">
+      <div class="aposta-head">
+        <div class="aposta-num">1</div>
+        <div class="aposta-titulo">Curva ABC — Classificação e percentuais</div>
+      </div>
+      <div class="aposta-desc">A Quadrix adora cobrar os percentuais da Curva ABC (20% itens = 80% valor para classe A) e o princípio de Pareto por trás dela. Espere uma questão sobre qual classe exige controle mais rigoroso.</div>
+      <span class="prob">🔥 Alta probabilidade</span>
+    </div>
+
+    <div class="aposta-card">
+      <div class="aposta-head">
+        <div class="aposta-num">2</div>
+        <div class="aposta-titulo">Modalidades da Lei 14.133 — as 5 novas</div>
+      </div>
+      <div class="aposta-desc">Questão quase certa: listar as 5 modalidades corretas (Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo) e identificar que Convite e Tomada de Preços foram extintos.</div>
+      <span class="prob">🔥 Alta probabilidade</span>
+    </div>
+
+    <div class="aposta-card">
+      <div class="aposta-head">
+        <div class="aposta-num">3</div>
+        <div class="aposta-titulo">Dispensa × Inexigibilidade de Licitação</div>
+      </div>
+      <div class="aposta-desc">A diferença entre "poderia licitar mas dispensa" e "impossível licitar" é clássica em qualquer concurso público. A Quadrix vai trazer um caso concreto para classificar.</div>
+      <span class="prob">🔥 Alta probabilidade</span>
+    </div>
+
+    <div class="aposta-card">
+      <div class="aposta-head">
+        <div class="aposta-num">4</div>
+        <div class="aposta-titulo">PEPS × UEPS × Média Ponderada</div>
+      </div>
+      <div class="aposta-desc">Diferenciar os métodos de avaliação de estoque, especialmente o fato de que o UEPS não é aceito pelo fisco brasileiro e que o PEPS é ideal para produtos perecíveis.</div>
+      <span class="prob">⭐ Probabilidade média</span>
+    </div>
+
+    <div class="aposta-card">
+      <div class="aposta-head">
+        <div class="aposta-num">5</div>
+        <div class="aposta-titulo">Fases do processo licitatório — nova ordem</div>
+      </div>
+      <div class="aposta-desc">A inversão de fases (julgamento ANTES da habilitação) é o grande diferencial da Lei 14.133/2021 em relação à Lei 8.666/93. Provável questão de ordenação das fases.</div>
+      <span class="prob">⭐ Probabilidade média</span>
+    </div>
+
+    <div class="aposta-card">
+      <div class="aposta-head">
+        <div class="aposta-num">6</div>
+        <div class="aposta-titulo">Tombamento × Baixa Patrimonial</div>
+      </div>
+      <div class="aposta-desc">Diferenciar tombamento (entrada no patrimônio) da baixa (saída) e as formas de desfazimento: alienação exige licitação, doação pode dispensar.</div>
+      <span class="prob">⭐ Probabilidade média</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Resumão Rápido — Véspera de Prova</div>
+    <div class="card-subtitle">O que não pode esquecer</div>
+
+    <ul>
+      <li>📦 <strong>Material consumo</strong> = perde identidade + dura ≤ 2 anos</li>
+      <li>🏛️ <strong>Material permanente</strong> = tombado + dura &gt; 2 anos</li>
+      <li>📊 <strong>Curva A</strong> = poucos itens, alto valor → controle rigoroso</li>
+      <li>🏷️ <strong>PEPS/FIFO</strong> = primeiro entra, primeiro sai (perecíveis)</li>
+      <li>📋 <strong>Tombamento</strong> = registro + número patrimonial</li>
+      <li>📤 <strong>Baixa</strong> = saída definitiva (alienação, doação, inutilização...)</li>
+      <li>⚖️ <strong>Lei 14.133</strong> = 5 modalidades (sem Convite e Tomada de Preços)</li>
+      <li>🔄 <strong>Julgamento ANTES de habilitação</strong> na nova lei</li>
+      <li>🚫 <strong>Dispensa</strong> = pode licitar mas a lei dispensa</li>
+      <li>🚫 <strong>Inexigibilidade</strong> = impossível licitar (sem concorrência)</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById(t.dataset.s).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
